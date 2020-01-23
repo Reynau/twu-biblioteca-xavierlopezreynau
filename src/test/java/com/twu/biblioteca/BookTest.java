@@ -11,7 +11,7 @@ public class BookTest {
     public void shouldReturnSerializedBook () {
         Book book = new Book("Book1", "Author1", "Year1");
 
-        String serializedBook = book.toString();
+        String serializedBook = book.serialize();
 
         String expected = "Book1:Author1:Year1";
         assertThat(serializedBook, is(expected));

@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book implements Printable {
     private String name;
     private String author;
     private String yearPublished;
@@ -11,8 +11,7 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    @Override
-    public String toString() {
+    public String serialize() {
         return name + ":" + author + ":" + yearPublished;
     }
 }

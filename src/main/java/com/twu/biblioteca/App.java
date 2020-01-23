@@ -4,10 +4,10 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class App {
+    static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
 
     public static void main(String[] args) {
         List<Book> books = new ArrayList<>();
@@ -21,11 +21,14 @@ public class App {
             books.add(book);
         }
 
-        WelcomePrinter welcomePrinter = new WelcomePrinter(System.out);
         BookLibrary bookLibrary = new BookLibrary(books);
-        BookLibraryPrinter bookLibraryPrinter = new BookLibraryPrinter(System.out, bookLibrary);
 
-        welcomePrinter.printWelcome();
-        bookLibraryPrinter.printBooks();
+        Printer printer = new Printer(System.out);
+        printer.print(WELCOME_MESSAGE);
+        printer.print(bookLibrary);
     }
 }
+/*
+BookLibrary contains Printer
+Interactions should be on BookLibrary instead of BookLibraryPrinter
+*/

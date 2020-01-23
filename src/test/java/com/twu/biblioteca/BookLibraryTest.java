@@ -38,4 +38,14 @@ public class BookLibraryTest {
         //should
         assertThat(bookList, is(books));
     }
+
+    @Test
+    public void shouldReturnSerializedBookLibrary () {
+        BookLibrary bookLibrary = new BookLibrary(books);
+
+        String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\nBook3:Author3:Year3\n";
+        String actual = bookLibrary.serialize();
+
+        assertThat(actual, is(expected));
+    }
 }
