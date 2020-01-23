@@ -40,15 +40,20 @@ public class MenuTest {
 
     @Test
     public void shouldBePrintable () {
+        Class<?> classObj = Menu.class;
+
+        assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
+
+    @Test
+    public void shouldSerializeCorrectly () {
         String option = "List of books";
 
         menu.add(option);
 
-        String expectedStr = "Menu:\n1. List of books\n";
-        String actualStr = menu.serialize();
-        Class<?> classObj = Menu.class;
+        String expected = "Menu:\n1. List of books\n";
+        String actual = menu.serialize();
 
-        assertThat(actualStr, is(expectedStr));
-        assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+        assertThat(actual, is(expected));
     }
 }
