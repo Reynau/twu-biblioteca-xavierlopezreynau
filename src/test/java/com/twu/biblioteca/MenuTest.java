@@ -46,7 +46,7 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldSerializeCorrectly () {
+    public void shouldReturnSerializedMenu () {
         String option = "List of books";
 
         menu.add(option);
