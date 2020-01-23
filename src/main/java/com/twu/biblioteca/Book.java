@@ -5,15 +5,9 @@ public class Book {
     private String author;
     private String yearPublished;
 
-    public void setName(String name) {
+    public Book (String name, String author, String yearPublished) {
         this.name = name;
-    }
-
-    public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public void setYearPublished(String yearPublished) {
         this.yearPublished = yearPublished;
     }
 

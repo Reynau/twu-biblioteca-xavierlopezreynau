@@ -21,10 +21,7 @@ public class BookLibraryPrinterTest {
             String author = "Author" + i;
             String yearPublished = "Year" + i;
 
-            Book book = new Book();
-            book.setName(name);
-            book.setAuthor(author);
-            book.setYearPublished(yearPublished);
+            Book book = new Book(name, author, yearPublished);
 
             books.add(book);
         }

@@ -9,10 +9,7 @@ public class BookTest {
 
     @Test
     public void shouldReturnSerializedBook () {
-        Book book = new Book();
-        book.setName("Book1");
-        book.setAuthor("Author1");
-        book.setYearPublished("Year1");
+        Book book = new Book("Book1", "Author1", "Year1");
 
         String serializedBook = book.toString();
 
