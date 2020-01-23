@@ -37,4 +37,18 @@ public class MenuTest {
         List<String> menuOptions = menu.getMenuOptions();
         assertThat(option, is(menuOptions.get(0)));
     }
+
+    @Test
+    public void shouldBePrintable () {
+        String option = "List of books";
+
+        menu.add(option);
+
+        String expectedStr = "Menu:\n1. List of books\n";
+        String actualStr = menu.serialize();
+        Class<?> classObj = Menu.class;
+
+        assertThat(actualStr, is(expectedStr));
+        assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
 }
