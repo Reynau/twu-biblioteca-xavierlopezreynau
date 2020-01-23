@@ -20,11 +20,11 @@ public class MenuTest {
     public void shouldAddNewMenuOptions () {
         List<String> menuOptions;
 
-        menuOptions = menu.getMenuOptions();
+        menuOptions = menu.getOptions();
         assertThat(0, is(menuOptions.size()));
 
         menu.add("List of books");
-        menuOptions = menu.getMenuOptions();
+        menuOptions = menu.getOptions();
         assertThat(1, is(menuOptions.size()));
     }
 
@@ -34,7 +34,7 @@ public class MenuTest {
 
         menu.add(option);
 
-        List<String> menuOptions = menu.getMenuOptions();
+        List<String> menuOptions = menu.getOptions();
         assertThat(option, is(menuOptions.get(0)));
     }
 

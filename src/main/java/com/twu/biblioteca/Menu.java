@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu implements Printable {
-    private List<String> menuOptions;
+    private List<String> options;
 
     public Menu() {
-        menuOptions = new ArrayList<>();
+        options = new ArrayList<>();
     }
 
-    public List<String> getMenuOptions() {
-        return menuOptions;
+    public List<String> getOptions() {
+        return options;
     }
 
     public void add (String option) {
-        menuOptions.add(option);
+        options.add(option);
     }
 
     public String serialize () {
         StringBuilder result = new StringBuilder();
         result.append("Menu:\n");
         int optionNum = 1;
-        for (String option : menuOptions) {
+        for (String option : options) {
             result.append(optionNum).append(". ").append(option).append("\n");
         }
         return result.toString();
