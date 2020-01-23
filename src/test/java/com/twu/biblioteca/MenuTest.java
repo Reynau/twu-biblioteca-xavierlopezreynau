@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,10 +9,15 @@ import static org.hamcrest.CoreMatchers.*;
 import java.util.List;
 
 public class MenuTest {
+    private Menu menu;
+
+    @Before
+    public void setUp () {
+        menu = new Menu();
+    }
 
     @Test
     public void shouldAddNewMenuOptions () {
-        Menu menu = new Menu();
         List<String> menuOptions;
 
         menuOptions = menu.getMenuOptions();
@@ -24,7 +30,6 @@ public class MenuTest {
 
     @Test
     public void shouldGetMenuOptions () {
-        Menu menu = new Menu();
         String option = "List of books";
 
         menu.add(option);
