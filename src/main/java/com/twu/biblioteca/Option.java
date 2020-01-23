@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Option {
+public abstract class Option {
     private String title;
 
     public Option(String title) {
@@ -10,4 +10,6 @@ public class Option {
     public String serialize () {
         return title;
     }
+
+    public abstract void execute();
 }
