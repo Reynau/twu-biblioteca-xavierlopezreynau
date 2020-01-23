@@ -36,4 +36,11 @@ public class BookLibraryTest {
 
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void shouldBePrintable () {
+        Class<?> classObj = BookLibrary.class;
+
+        assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
 }
