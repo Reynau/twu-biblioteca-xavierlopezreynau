@@ -28,18 +28,6 @@ public class BookLibraryTest {
     }
 
     @Test
-    public void shouldReturnBookList () {
-        //given
-        BookLibrary bookLibrary = new BookLibrary(books);
-
-        //then
-        List<Book> bookList = bookLibrary.getBooks();
-
-        //should
-        assertThat(bookList, is(books));
-    }
-
-    @Test
     public void shouldReturnSerializedBookLibrary () {
         BookLibrary bookLibrary = new BookLibrary(books);
 
