@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu implements Printable {
-    private List<String> options;
+    private List<Option> options;
 
     public Menu() {
         options = new ArrayList<>();
     }
 
-    public List<String> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
-    public void add (String option) {
+    public void add (Option option) {
         options.add(option);
     }
 
@@ -22,8 +22,8 @@ public class Menu implements Printable {
         StringBuilder result = new StringBuilder();
         result.append("Menu:\n");
         int optionNum = 1;
-        for (String option : options) {
-            result.append(optionNum).append(". ").append(option).append("\n");
+        for (Option option : options) {
+            result.append(optionNum).append(". ").append(option.serialize()).append("\n");
         }
         return result.toString();
     }

@@ -5,37 +5,41 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MenuTest {
     private Menu menu;
+    private Option option;
 
     @Before
     public void setUp () {
         menu = new Menu();
+        option = mock(Option.class);
     }
 
     @Test
     public void shouldAddNewMenuOptions () {
-        List<String> menuOptions;
+        List<Option> options;
 
-        menuOptions = menu.getOptions();
-        assertThat(0, is(menuOptions.size()));
+        options = menu.getOptions();
+        assertThat(0, is(options.size()));
 
-        menu.add("List of books");
-        menuOptions = menu.getOptions();
-        assertThat(1, is(menuOptions.size()));
+        menu.add(option);
+        options = menu.getOptions();
+        assertThat(1, is(options.size()));
     }
 
     @Test
     public void shouldGetMenuOptions () {
-        String option = "List of books";
-
         menu.add(option);
 
-        List<String> menuOptions = menu.getOptions();
-        assertThat(option, is(menuOptions.get(0)));
+        List<Option> menuOptions = menu.getOptions();
+        assertThat(menuOptions, is(Collections.singletonList(option)));
     }
 
     @Test
@@ -47,7 +51,8 @@ public class MenuTest {
 
     @Test
     public void shouldReturnSerializedMenu () {
-        String option = "List of books";
+        String optionTitle = "List of books";
+        when(option.serialize()).thenReturn(optionTitle);
 
         menu.add(option);
 
