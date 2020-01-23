@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.MenuException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,12 @@ public class Menu implements Printable {
 
     public void add (Option option) {
         options.add(option);
+    }
+
+    public void select (int optionNumber) throws MenuException {
+        if (optionNumber < 0 || optionNumber >= options.size()) { throw new MenuException("Invalid option"); }
+        Option option = options.get(optionNumber-1);
+        option.execute();
     }
 
     public String serialize () {

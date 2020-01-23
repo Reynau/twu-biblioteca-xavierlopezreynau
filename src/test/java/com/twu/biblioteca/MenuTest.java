@@ -1,12 +1,12 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.MenuException;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -60,5 +60,21 @@ public class MenuTest {
         String actual = menu.serialize();
 
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldBeSelectable () throws MenuException {
+        menu.add(option);
+
+        int optionNum = 1;
+        menu.select(optionNum);
+
+        verify(option).execute();
+    }
+
+    @Test(expected = MenuException.class)
+    public void shouldThrowMenuExceptionOnInvalidOption () throws MenuException {
+        int optionNum = 1;
+        menu.select(optionNum);
     }
 }
