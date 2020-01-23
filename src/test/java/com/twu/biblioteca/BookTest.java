@@ -16,4 +16,11 @@ public class BookTest {
         String expected = "Book1:Author1:Year1";
         assertThat(serializedBook, is(expected));
     }
+
+    @Test
+    public void shouldBePrintable () {
+        Class<?> classObj = Book.class;
+
+        assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
 }
