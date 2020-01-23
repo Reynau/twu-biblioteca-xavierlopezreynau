@@ -3,13 +3,13 @@ package com.twu.biblioteca;
 import java.util.List;
 
 public class BookLibrary {
-    private List<String> books;
+    private List<Book> books;
 
-    public BookLibrary (List<String> books) {
+    public BookLibrary (List<Book> books) {
         this.books = books;
     }
 
-    public List<String> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 }

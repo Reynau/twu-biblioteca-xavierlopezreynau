@@ -13,9 +13,9 @@ public class BookLibraryPrinter {
     }
 
     public void printBooks () {
-        List<String> books = bookLibrary.getBooks();
-        for (String book : books) {
-            printStream.println(book);
+        List<Book> books = bookLibrary.getBooks();
+        for (Book book : books) {
+            printStream.println(book.toString());
         }
     }
 }

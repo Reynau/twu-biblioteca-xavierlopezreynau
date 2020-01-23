@@ -3,13 +3,29 @@
  */
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
+        List<Book> books = new ArrayList<>();
+        for (int i=1; i < 4; ++i) {
+            String name = "Book" + i;
+            String author = "Author" + i;
+            String yearPublished = "Year" + i;
+
+            Book book = new Book();
+            book.setName(name);
+            book.setAuthor(author);
+            book.setYearPublished(yearPublished);
+
+            books.add(book);
+        }
+
         WelcomePrinter welcomePrinter = new WelcomePrinter(System.out);
-        BookLibrary bookLibrary = new BookLibrary(Arrays.asList("Book1", "Book2", "Book3"));
+        BookLibrary bookLibrary = new BookLibrary(books);
         BookLibraryPrinter bookLibraryPrinter = new BookLibraryPrinter(System.out, bookLibrary);
 
         welcomePrinter.printWelcome();

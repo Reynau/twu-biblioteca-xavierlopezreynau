@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,18 +10,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BookLibraryTest {
+    public List<Book> books;
+
+    @Before
+    public void setUp () {
+        for (int i=1; i < 4; ++i) {
+            String name = "Book" + i;
+            String author = "Author" + i;
+            String yearPublished = "Year" + i;
+
+            Book book = new Book();
+            book.setName(name);
+            book.setAuthor(author);
+            book.setYearPublished(yearPublished);
+
+            books.add(book);
+        }
+    }
 
     @Test
     public void shouldReturnBookList () {
         //given
-        List<String> actualList = Arrays.asList("Book1", "Book2", "Book3");
-        BookLibrary bookLibrary = new BookLibrary(actualList);
+        BookLibrary bookLibrary = new BookLibrary(books);
 
         //then
-        List<String> bookList = bookLibrary.getBooks();
+        List<Book> bookList = bookLibrary.getBooks();
 
         //should
-        List<String> expectedList = Arrays.asList("Book1", "Book2", "Book3");
-        assertThat(bookList, is(expectedList));
+        assertThat(bookList, is(books));
     }
 }
