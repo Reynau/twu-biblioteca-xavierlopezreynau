@@ -40,9 +40,9 @@ public class BookLibraryPrinterTest {
         bookLibraryPrinter.printBooks();
 
         //should
-        verify(printStream).println("Book1:Author1:Year1");
-        verify(printStream).println("Book2:Author2:Year2");
-        verify(printStream).println("Book3:Author3:Year3");
+        verify(printStream).println(books.get(0));
+        verify(printStream).println(books.get(1));
+        verify(printStream).println(books.get(2));
         verifyNoMoreInteractions(printStream);
     }
 }
