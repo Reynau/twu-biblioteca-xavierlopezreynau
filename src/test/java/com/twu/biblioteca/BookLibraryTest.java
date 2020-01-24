@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.InvalidBook;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +8,6 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BookLibraryTest {
@@ -42,5 +42,17 @@ public class BookLibraryTest {
         Class<?> classObj = BookLibrary.class;
 
         assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
+
+    @Test
+    public void shouldStoreCheckedOutStateOfBooks () throws InvalidBook {
+        BookLibrary bookLibrary = new BookLibrary(books);
+
+        bookLibrary.checkoutBook(3);
+
+        String actual = bookLibrary.serialize();
+        String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\n";
+
+        assertThat(actual, is(expected));
     }
 }
