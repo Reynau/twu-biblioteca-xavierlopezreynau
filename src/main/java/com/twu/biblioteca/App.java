@@ -7,6 +7,7 @@ import com.twu.biblioteca.exceptions.MenuException;
 import com.twu.biblioteca.options.CheckoutBookOption;
 import com.twu.biblioteca.options.ExitOption;
 import com.twu.biblioteca.options.ListOfBooksOption;
+import com.twu.biblioteca.options.ReturnBookOption;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,10 +33,12 @@ public class App {
         Option exitOption = new ExitOption();
         Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
         Option checkoutBookOption = new CheckoutBookOption(printer, reader, bookLibrary);
+        Option returnBookOption = new ReturnBookOption(printer, reader, bookLibrary);
 
         menu.add(exitOption);
         menu.add(listOfBooks);
         menu.add(checkoutBookOption);
+        menu.add(returnBookOption);
 
         printer.print(WELCOME_MESSAGE);
 
