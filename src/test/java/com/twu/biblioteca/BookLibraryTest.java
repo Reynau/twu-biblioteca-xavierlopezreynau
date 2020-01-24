@@ -23,12 +23,8 @@ public class BookLibraryTest {
 
         books = new ArrayList<>();
         for (int i=1; i < 4; ++i) {
-            String name = "Book" + i;
-            String author = "Author" + i;
-            String yearPublished = "Year" + i;
-
-            Book book = new Book(name, author, yearPublished);
-
+            Book book = mock(Book.class);
+            when(book.serialize()).thenReturn("Book"+i+":Author"+i+":Year"+i);
             books.add(book);
         }
 
