@@ -21,17 +21,18 @@ public class Menu implements Printable {
     }
 
     public void select (int optionNumber) throws MenuException {
-        if (optionNumber < 0 || optionNumber >= options.size()) { throw new MenuException("Invalid option"); }
-        Option option = options.get(optionNumber-1);
+        if (optionNumber < 0 || optionNumber > options.size()) { throw new MenuException("Option does not exist"); }
+        Option option = options.get(optionNumber);
         option.execute();
     }
 
     public String serialize () {
         StringBuilder result = new StringBuilder();
         result.append("Menu:\n");
-        int optionNum = 1;
+        int optionNum = 0;
         for (Option option : options) {
             result.append(optionNum).append(". ").append(option.serialize()).append("\n");
+            ++optionNum;
         }
         return result.toString();
     }
