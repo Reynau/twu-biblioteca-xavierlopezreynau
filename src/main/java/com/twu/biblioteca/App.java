@@ -24,9 +24,11 @@ public class App {
         List<Book> books = createFakeListOfBooks();
         BookLibrary bookLibrary = new BookLibrary(books);
 
-        Menu menu = new Menu(reader);
+        Menu menu = new Menu();
+
         Option exitOption = new ExitOption();
         Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
+
         menu.add(exitOption);
         menu.add(listOfBooks);
 
