@@ -51,7 +51,7 @@ public class BookLibrary implements Printable {
         }
 */
         this.checkedOut.set(bookIndex, Boolean.FALSE);
-        //printer.print("Thank you! Enjoy the book");
+        printer.print("Thank you for returning the book");
     }
 
     public String serialize () {

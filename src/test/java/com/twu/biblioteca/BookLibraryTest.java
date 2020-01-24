@@ -86,4 +86,12 @@ public class BookLibraryTest {
 
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void shouldPrintSuccessfulMessageWhenBookIsReturned () throws InvalidBook {
+        bookLibrary.checkoutBook(3);
+        bookLibrary.returnBook(3);
+
+        verify(printer).print("Thank you for returning the book");
+    }
 }
