@@ -27,7 +27,15 @@ public class BookLibrary implements Printable {
         if (bookNumber < 1 || bookNumber > this.checkedOut.size()) {
             throw new InvalidBook("Invalid book number");
         }
-        this.checkedOut.set(bookNumber-1, Boolean.TRUE);
+
+        int bookIndex = bookNumber-1;
+
+        if (this.checkedOut.get(bookIndex)) {
+            printer.print("Sorry, that book is not available");
+            return;
+        }
+
+        this.checkedOut.set(bookIndex, Boolean.TRUE);
         printer.print("Thank you! Enjoy the book");
     }
 

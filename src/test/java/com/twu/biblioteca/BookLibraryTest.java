@@ -67,4 +67,12 @@ public class BookLibraryTest {
         verify(printer).print("Thank you! Enjoy the book");
         verifyNoMoreInteractions(printer);
     }
+
+    @Test
+    public void shouldPrintUnSuccessfulMessageWhenBookIsCheckedOut () throws InvalidBook {
+        bookLibrary.checkoutBook(3);
+        bookLibrary.checkoutBook(3);
+
+        verify(printer).print("Sorry, that book is not available");
+    }
 }
