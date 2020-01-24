@@ -37,7 +37,7 @@ public class BookLibraryTest {
 
     @Test
     public void shouldReturnSerializedBookLibrary () {
-        String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\nBook3:Author3:Year3\n";
+        String expected = "1. Book1:Author1:Year1\n2. Book2:Author2:Year2\n3. Book3:Author3:Year3\n";
         String actual = bookLibrary.serialize();
 
         assertThat(actual, is(expected));
@@ -52,10 +52,10 @@ public class BookLibraryTest {
 
     @Test
     public void shouldStoreCheckedOutStateOfBooks () throws InvalidBook {
-        bookLibrary.checkoutBook(3);
+        bookLibrary.checkoutBook(1);
 
         String actual = bookLibrary.serialize();
-        String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\n";
+        String expected = "2. Book2:Author2:Year2\n3. Book3:Author3:Year3\n";
 
         assertThat(actual, is(expected));
     }

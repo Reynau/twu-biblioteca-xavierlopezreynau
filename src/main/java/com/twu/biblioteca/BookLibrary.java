@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.InvalidBook;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -41,12 +40,12 @@ public class BookLibrary implements Printable {
 
     public String serialize () {
         StringBuilder result = new StringBuilder();
+
         for (int i = 0; i < books.size(); ++i){
             if (checkedOut.get(i)) continue;
 
             Book book = books.get(i);
-            result.append(book.serialize());
-            result.append("\n");
+            result.append(i+1).append(". ").append(book.serialize()).append("\n");
         }
         return result.toString();
     }
