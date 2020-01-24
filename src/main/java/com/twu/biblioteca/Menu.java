@@ -21,7 +21,7 @@ public class Menu implements Printable {
     }
 
     public void select (int optionNumber) throws MenuException {
-        if (optionNumber < 0 || optionNumber > options.size()) { throw new MenuException("Option does not exist"); }
+        if (optionNumber < 0 || optionNumber > options.size()) { throw new MenuException("Please select a valid option!"); }
         Option option = options.get(optionNumber);
         option.execute();
     }
