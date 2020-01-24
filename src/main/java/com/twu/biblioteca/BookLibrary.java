@@ -23,9 +23,7 @@ public class BookLibrary implements Printable {
     }
 
     public void checkoutBook (int bookNumber) throws InvalidBook {
-        if (bookNumber < 1 || bookNumber > this.checkedOut.size()) {
-            throw new InvalidBook("Invalid book number");
-        }
+        checkIfIsOutOfBounds(bookNumber);
 
         int bookIndex = bookNumber-1;
 
@@ -39,9 +37,7 @@ public class BookLibrary implements Printable {
     }
 
     public void returnBook (int bookNumber) throws InvalidBook {
-        if (bookNumber < 1 || bookNumber > this.checkedOut.size()) {
-            throw new InvalidBook("Invalid book number");
-        }
+        checkIfIsOutOfBounds(bookNumber);
 
         int bookIndex = bookNumber-1;
 
@@ -64,5 +60,11 @@ public class BookLibrary implements Printable {
             result.append(i+1).append(". ").append(book.serialize()).append("\n");
         }
         return result.toString();
+    }
+
+    private void checkIfIsOutOfBounds(int bookNumber) throws InvalidBook {
+        if (bookNumber < 1 || bookNumber > this.checkedOut.size()) {
+            throw new InvalidBook("Invalid book number");
+        }
     }
 }
