@@ -1,4 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
+
+import com.twu.biblioteca.BookLibrary;
+import com.twu.biblioteca.Option;
+import com.twu.biblioteca.Printer;
 
 public class ListOfBooksOption extends Option {
     private static final String TITLE = "List of books";

@@ -4,6 +4,8 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.MenuException;
+import com.twu.biblioteca.options.ExitOption;
+import com.twu.biblioteca.options.ListOfBooksOption;
 
 import java.io.BufferedReader;
 import java.io.IOException;
