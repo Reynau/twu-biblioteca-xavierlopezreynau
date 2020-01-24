@@ -38,6 +38,22 @@ public class BookLibrary implements Printable {
         printer.print("Thank you! Enjoy the book");
     }
 
+    public void returnBook (int bookNumber) throws InvalidBook {
+        if (bookNumber < 1 || bookNumber > this.checkedOut.size()) {
+            throw new InvalidBook("Invalid book number");
+        }
+
+        int bookIndex = bookNumber-1;
+/*
+        if (this.checkedOut.get(bookIndex)) {
+            printer.print("Sorry, that book is not available");
+            return;
+        }
+*/
+        this.checkedOut.set(bookIndex, Boolean.FALSE);
+        //printer.print("Thank you! Enjoy the book");
+    }
+
     public String serialize () {
         StringBuilder result = new StringBuilder();
 

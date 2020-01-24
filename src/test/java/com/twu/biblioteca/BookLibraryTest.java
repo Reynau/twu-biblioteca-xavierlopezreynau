@@ -75,4 +75,15 @@ public class BookLibraryTest {
 
         verify(printer).print("Sorry, that book is not available");
     }
+
+    @Test
+    public void shouldStoreReturnedBookState () throws InvalidBook {
+        bookLibrary.checkoutBook(1);
+        bookLibrary.returnBook(1);
+
+        String actual = bookLibrary.serialize();
+        String expected = "1. Book1:Author1:Year1\n2. Book2:Author2:Year2\n3. Book3:Author3:Year3\n";
+
+        assertThat(actual, is(expected));
+    }
 }
