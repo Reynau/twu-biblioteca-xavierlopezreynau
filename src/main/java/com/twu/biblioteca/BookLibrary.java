@@ -44,12 +44,12 @@ public class BookLibrary implements Printable {
         }
 
         int bookIndex = bookNumber-1;
-/*
-        if (this.checkedOut.get(bookIndex)) {
-            printer.print("Sorry, that book is not available");
+
+        if (!this.checkedOut.get(bookIndex)) {
+            printer.print("That is not a valid book to return");
             return;
         }
-*/
+
         this.checkedOut.set(bookIndex, Boolean.FALSE);
         printer.print("Thank you for returning the book");
     }

@@ -94,4 +94,11 @@ public class BookLibraryTest {
 
         verify(printer).print("Thank you for returning the book");
     }
+
+    @Test
+    public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidBook {
+        bookLibrary.returnBook(3);
+
+        verify(printer).print("That is not a valid book to return");
+    }
 }
