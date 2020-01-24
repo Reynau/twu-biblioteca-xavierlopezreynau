@@ -18,10 +18,6 @@ public class BookLibrary implements Printable {
         Collections.fill(checkedOut, Boolean.FALSE);
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
     public void checkoutBook (int bookNumber) throws InvalidBook {
         checkIfIsOutOfBounds(bookNumber);
 
