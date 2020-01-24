@@ -4,6 +4,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.MenuException;
+import com.twu.biblioteca.options.CheckoutBookOption;
 import com.twu.biblioteca.options.ExitOption;
 import com.twu.biblioteca.options.ListOfBooksOption;
 
@@ -30,9 +31,11 @@ public class App {
 
         Option exitOption = new ExitOption();
         Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
+        Option checkoutBookOption = new CheckoutBookOption(printer, reader, bookLibrary);
 
         menu.add(exitOption);
         menu.add(listOfBooks);
+        menu.add(checkoutBookOption);
 
         printer.print(WELCOME_MESSAGE);
 
