@@ -6,15 +6,21 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookLibraryTest {
-    public List<Book> books;
+    private Printer printer;
+    private List<Book> books;
+
+    BookLibrary bookLibrary;
 
     @Before
     public void setUp () {
+        printer = mock(Printer.class);
+
         books = new ArrayList<>();
         for (int i=1; i < 4; ++i) {
             String name = "Book" + i;
@@ -25,12 +31,12 @@ public class BookLibraryTest {
 
             books.add(book);
         }
+
+        bookLibrary = new BookLibrary(printer, books);
     }
 
     @Test
     public void shouldReturnSerializedBookLibrary () {
-        BookLibrary bookLibrary = new BookLibrary(books);
-
         String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\nBook3:Author3:Year3\n";
         String actual = bookLibrary.serialize();
 
@@ -46,13 +52,19 @@ public class BookLibraryTest {
 
     @Test
     public void shouldStoreCheckedOutStateOfBooks () throws InvalidBook {
-        BookLibrary bookLibrary = new BookLibrary(books);
-
         bookLibrary.checkoutBook(3);
 
         String actual = bookLibrary.serialize();
         String expected = "Book1:Author1:Year1\nBook2:Author2:Year2\n";
 
         assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidBook {
+        bookLibrary.checkoutBook(3);
+
+        verify(printer).print("Thank you! Enjoy the book");
+        verifyNoMoreInteractions(printer);
     }
 }

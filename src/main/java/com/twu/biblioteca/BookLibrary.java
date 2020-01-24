@@ -8,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class BookLibrary implements Printable {
+    private Printer printer;
     private List<Book> books;
     private List<Boolean> checkedOut;
 
-    public BookLibrary (List<Book> books) {
+    public BookLibrary (Printer printer, List<Book> books) {
+        this.printer = printer;
         this.books = books;
         this.checkedOut = Arrays.asList(new Boolean[books.size()]);
         Collections.fill(checkedOut, Boolean.FALSE);
@@ -26,6 +28,7 @@ public class BookLibrary implements Printable {
             throw new InvalidBook("Invalid book number");
         }
         this.checkedOut.set(bookNumber-1, Boolean.TRUE);
+        printer.print("Thank you! Enjoy the book");
     }
 
     public String serialize () {
