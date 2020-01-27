@@ -23,4 +23,14 @@ public class MovieTest {
 
         assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
     }
+
+    @Test
+    public void shouldReturnUnratedWhenNotRated () {
+        Movie movie = new Movie("Book1", 1900, "Director1", 0);
+
+        String serializedMovie = movie.serialize();
+
+        String expected = "Book1:1900:Director1:Unrated";
+        assertThat(serializedMovie, is(expected));
+    }
 }

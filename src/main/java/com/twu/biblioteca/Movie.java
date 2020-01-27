@@ -14,6 +14,7 @@ public class Movie implements Printable {
     }
 
     public String serialize() {
-        return name + ":" + yearPublished + ":" + director + ":" + rating;
+        String ratingStr = (rating == 0) ? "Unrated" : Integer.toString(rating);
+        return name + ":" + yearPublished + ":" + director + ":" + ratingStr;
     }
 }
