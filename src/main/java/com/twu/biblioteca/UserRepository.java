@@ -12,7 +12,7 @@ public class UserRepository {
     private UserRepository() {
         users = new HashMap<>();
         for (int i = 0; i < 5; ++i) {
-            users.put("u"+i+":p"+i, new User("u"+i));
+            users.put("u"+i+":p"+i, new User("u"+i, "p"+i));
         }
 
         loggedUser = null;
