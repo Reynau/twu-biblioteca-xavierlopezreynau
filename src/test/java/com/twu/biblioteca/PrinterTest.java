@@ -29,7 +29,7 @@ public class PrinterTest {
     @Test
     public void shouldPrintThePrintableObject () {
         String expected = "Hey! I'm a serialized book library!";
-        BookLibrary bookLibrary = mock(BookLibrary.class);
+        Library<Book> bookLibrary = mock(Library.class);
         when(bookLibrary.serialize()).thenReturn(expected);
 
         printer.print(bookLibrary);

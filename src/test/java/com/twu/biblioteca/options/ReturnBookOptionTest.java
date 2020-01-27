@@ -1,6 +1,7 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.BookLibrary;
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Library;
 import com.twu.biblioteca.Printer;
 import com.twu.biblioteca.exceptions.InvalidBook;
 import org.junit.Before;
@@ -15,14 +16,14 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public class ReturnBookOptionTest {
     Printer printer;
     BufferedReader reader;
-    BookLibrary bookLibrary;
+    Library<Book> bookLibrary;
     ReturnBookOption returnBookOption;
 
     @Before
     public void setUp () {
         printer = mock(Printer.class);
         reader = mock(BufferedReader.class);
-        bookLibrary = mock(BookLibrary.class);
+        bookLibrary = mock(Library.class);
         returnBookOption = new ReturnBookOption(printer, reader, bookLibrary);
     }
 
@@ -33,7 +34,7 @@ public class ReturnBookOptionTest {
 
         returnBookOption.execute();
 
-        verify(bookLibrary).returnBook(bookNumber);
+        verify(bookLibrary).returnItem(bookNumber);
         verifyNoMoreInteractions(bookLibrary);
     }
 }

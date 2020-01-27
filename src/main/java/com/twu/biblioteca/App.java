@@ -26,7 +26,7 @@ public class App {
         printer = new Printer(System.out);
 
         List<Book> books = createFakeListOfBooks();
-        BookLibrary bookLibrary = new BookLibrary(printer, books);
+        Library<Book> bookLibrary = new Library<>(printer, books);
 
         Menu menu = new Menu();
 

@@ -42,7 +42,7 @@ public class LibraryTest {
 
     @Test
     public void shouldBePrintable () {
-        Class<?> classObj = BookLibrary.class;
+        Class<?> classObj = Library.class;
 
         assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
     }

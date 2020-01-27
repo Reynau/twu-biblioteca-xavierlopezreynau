@@ -1,8 +1,6 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.BookLibrary;
-import com.twu.biblioteca.Option;
-import com.twu.biblioteca.Printer;
+import com.twu.biblioteca.*;
 import com.twu.biblioteca.exceptions.InvalidBook;
 
 import java.io.BufferedReader;
@@ -13,9 +11,9 @@ public class ReturnBookOption extends Option {
 
     BufferedReader reader;
     Printer printer;
-    BookLibrary bookLibrary;
+    Library<Book> bookLibrary;
 
-    public ReturnBookOption(Printer printer, BufferedReader reader, BookLibrary bookLibrary) {
+    public ReturnBookOption(Printer printer, BufferedReader reader, Library<Book> bookLibrary) {
         super(TITLE);
 
         this.printer = printer;
@@ -28,7 +26,7 @@ public class ReturnBookOption extends Option {
         int optionNumber = requestBookNumber();
 
         try {
-            bookLibrary.returnBook(optionNumber);
+            bookLibrary.returnItem(optionNumber);
         }
         catch (InvalidBook e) {
             printer.print(e.getMessage());

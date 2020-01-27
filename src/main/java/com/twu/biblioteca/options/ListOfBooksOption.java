@@ -1,16 +1,14 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.BookLibrary;
-import com.twu.biblioteca.Option;
-import com.twu.biblioteca.Printer;
+import com.twu.biblioteca.*;
 
 public class ListOfBooksOption extends Option {
     private static final String TITLE = "List of books";
 
-    private BookLibrary bookLibrary;
+    private Library<Book> bookLibrary;
     private Printer printer;
 
-    public ListOfBooksOption(BookLibrary bookLibrary, Printer printer) {
+    public ListOfBooksOption(Library<Book> bookLibrary, Printer printer) {
         super(TITLE);
 
         this.bookLibrary = bookLibrary;
