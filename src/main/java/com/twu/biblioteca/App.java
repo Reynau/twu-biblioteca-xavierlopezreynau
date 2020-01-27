@@ -4,10 +4,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.MenuException;
-import com.twu.biblioteca.options.CheckoutBookOption;
-import com.twu.biblioteca.options.ExitOption;
-import com.twu.biblioteca.options.ListOfBooksOption;
-import com.twu.biblioteca.options.ReturnBookOption;
+import com.twu.biblioteca.options.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,17 +25,10 @@ public class App {
         List<Book> books = createFakeListOfBooks();
         Library<Book> bookLibrary = new Library<>(printer, books);
 
-        Menu menu = new Menu();
+        List<Movie> movies = createFakeListOfMovies();
+        Library<Movie> movieLibrary = new Library<>(printer, movies);
 
-        Option exitOption = new ExitOption();
-        Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
-        Option checkoutBookOption = new CheckoutBookOption(printer, reader, bookLibrary);
-        Option returnBookOption = new ReturnBookOption(printer, reader, bookLibrary);
-
-        menu.add(exitOption);
-        menu.add(listOfBooks);
-        menu.add(checkoutBookOption);
-        menu.add(returnBookOption);
+        Menu menu = createMenu(bookLibrary, movieLibrary);
 
         printer.print(WELCOME_MESSAGE);
 
@@ -54,6 +44,28 @@ public class App {
             }
         }
         while (optionNumber != 0);
+    }
+
+    private static Menu createMenu (Library<Book> bookLibrary, Library<Movie> movieLibrary) {
+        Menu menu = new Menu();
+
+        Option exitOption = new ExitOption();
+
+        Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
+        Option checkoutBookOption = new CheckoutBookOption(printer, reader, bookLibrary);
+        Option returnBookOption = new ReturnBookOption(printer, reader, bookLibrary);
+
+        Option listOfMovies = new ListOfMoviesOption(movieLibrary, printer);
+
+        menu.add(exitOption);
+
+        menu.add(listOfBooks);
+        menu.add(checkoutBookOption);
+        menu.add(returnBookOption);
+
+        menu.add(listOfMovies);
+
+        return menu;
     }
 
     private static int requestAction() {
@@ -90,8 +102,19 @@ public class App {
         }
         return books;
     }
+
+    private static List<Movie> createFakeListOfMovies () {
+        List<Movie> movies = new ArrayList<>();
+        for (int i=1; i < 4; ++i) {
+            String name = "Movie" + i;
+            int yearPublished = 1900;
+            String director = "Director" + i;
+            int rating = 8;
+
+            Movie movie = new Movie(name, yearPublished, director, rating);
+
+            movies.add(movie);
+        }
+        return movies;
+    }
 }
-/*
-BookLibrary contains Printer
-Interactions should be on BookLibrary instead of BookLibraryPrinter
-*/
