@@ -42,7 +42,8 @@ public class Library<T extends Printable> implements Printable {
 
         @Override
         public String serialize() {
-            return item.serialize();
+            if (user == null) return item.serialize();
+            return item.serialize() + " - " + user.serialize();
         }
     }
 
@@ -93,6 +94,20 @@ public class Library<T extends Printable> implements Printable {
             Node node = nodes.get(i);
 
             if (node.isCheckedOut()) continue;
+
+            result.append(i+1).append(". ").append(node.serialize()).append("\n");
+        }
+
+        return result.toString();
+    }
+
+    public String getCheckedOutBooks () {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < nodes.size(); ++i) {
+            Node node = nodes.get(i);
+
+            if (!node.isCheckedOut()) continue;
 
             result.append(i+1).append(". ").append(node.serialize()).append("\n");
         }
