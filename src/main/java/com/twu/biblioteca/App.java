@@ -54,6 +54,7 @@ public class App {
         Option listOfBooks = new ListOfBooksOption(bookLibrary, printer);
         Option checkoutBookOption = new CheckoutBookOption(printer, reader, bookLibrary);
         Option returnBookOption = new ReturnBookOption(printer, reader, bookLibrary);
+        Option viewCheckedOutBooks = new ViewCheckedOutBooksOption(printer, bookLibrary);
 
         Option listOfMovies = new ListOfMoviesOption(movieLibrary, printer);
         Option checkoutMovieOption = new CheckoutMovieOption(printer, reader, movieLibrary);
@@ -67,6 +68,7 @@ public class App {
         menu.add(listOfBooks);
         menu.add(checkoutBookOption);
         menu.add(returnBookOption);
+        menu.add(viewCheckedOutBooks);
 
         menu.add(listOfMovies);
         menu.add(checkoutMovieOption);
