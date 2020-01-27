@@ -13,7 +13,7 @@ public class UserRepositoryTest {
 
     @Before
     public void setUp() {
-        userRepository = new UserRepository();
+        userRepository = UserRepository.userRepository;
     }
 
     @Test

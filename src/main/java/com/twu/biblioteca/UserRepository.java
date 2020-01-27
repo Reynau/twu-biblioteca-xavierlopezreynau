@@ -7,7 +7,9 @@ public class UserRepository {
     HashMap<String, User> users;
     User loggedUser;
 
-    public UserRepository() {
+    public static UserRepository userRepository = new UserRepository();
+
+    private UserRepository() {
         users = new HashMap<>();
         for (int i = 0; i < 5; ++i) {
             users.put("u"+i+":p"+i, new User("u"+i));
