@@ -2,6 +2,7 @@ package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.*;
 import com.twu.biblioteca.exceptions.InvalidItem;
+import com.twu.biblioteca.exceptions.SessionException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,9 +27,12 @@ public class CheckoutMovieOption extends Option {
         int optionNumber = requestMovieNumber();
 
         try {
-            movieLibrary.checkoutItem(optionNumber);
+            movieLibrary.checkoutItem(optionNumber, UserRepository.userRepository.getLoggedUser());
         }
         catch (InvalidItem e) {
+            printer.print(e.getMessage());
+        }
+        catch (SessionException e) {
             printer.print(e.getMessage());
         }
     }

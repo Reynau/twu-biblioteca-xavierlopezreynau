@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.InvalidItem;
+import com.twu.biblioteca.exceptions.SessionException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ import static org.mockito.Mockito.verify;
 public class LibraryTest {
     private Printer printer;
     private List<Book> books;
+    private User user;
 
     Library<Book> bookLibrary;
 
@@ -28,6 +30,9 @@ public class LibraryTest {
             when(book.serialize()).thenReturn("Book"+i+":Author"+i+":Year"+i);
             books.add(book);
         }
+
+        user = mock(User.class);
+        when(user.getHash()).thenReturn("u1:p1");
 
         bookLibrary = new Library<>(printer, books);
     }
@@ -48,8 +53,8 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldStoreCheckedOutStateOfBooks () throws InvalidItem {
-        bookLibrary.checkoutItem(1);
+    public void shouldStoreCheckedOutStateOfBooks () throws InvalidItem, SessionException {
+        bookLibrary.checkoutItem(1, user);
 
         String actual = bookLibrary.serialize();
         String expected = "2. Book2:Author2:Year2\n3. Book3:Author3:Year3\n";
@@ -58,25 +63,25 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidItem {
-        bookLibrary.checkoutItem(3);
+    public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidItem, SessionException {
+        bookLibrary.checkoutItem(3, user);
 
         verify(printer).print("Thank you! Enjoy the item");
         verifyNoMoreInteractions(printer);
     }
 
     @Test
-    public void shouldPrintUnSuccessfulMessageWhenBookIsCheckedOut () throws InvalidItem {
-        bookLibrary.checkoutItem(3);
-        bookLibrary.checkoutItem(3);
+    public void shouldPrintUnSuccessfulMessageWhenBookIsCheckedOut () throws InvalidItem, SessionException {
+        bookLibrary.checkoutItem(3, user);
+        bookLibrary.checkoutItem(3, user);
 
         verify(printer).print("Sorry, that item is not available");
     }
 
     @Test
-    public void shouldStoreReturnedBookState () throws InvalidItem {
-        bookLibrary.checkoutItem(1);
-        bookLibrary.returnItem(1);
+    public void shouldStoreReturnedBookState () throws InvalidItem, SessionException {
+        bookLibrary.checkoutItem(1, user);
+        bookLibrary.returnItem(1, user);
 
         String actual = bookLibrary.serialize();
         String expected = "1. Book1:Author1:Year1\n2. Book2:Author2:Year2\n3. Book3:Author3:Year3\n";
@@ -85,17 +90,15 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintSuccessfulMessageWhenBookIsReturned () throws InvalidItem {
-        bookLibrary.checkoutItem(3);
-        bookLibrary.returnItem(3);
+    public void shouldPrintSuccessfulMessageWhenBookIsReturned () throws InvalidItem, SessionException {
+        bookLibrary.checkoutItem(3, user);
+        bookLibrary.returnItem(3, user);
 
         verify(printer).print("Thank you for returning the item");
     }
 
-    @Test
-    public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidItem {
-        bookLibrary.returnItem(3);
-
-        verify(printer).print("That is not a valid item to return");
+    @Test(expected=InvalidItem.class)
+    public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidItem, SessionException {
+        bookLibrary.returnItem(3, user);
     }
 }

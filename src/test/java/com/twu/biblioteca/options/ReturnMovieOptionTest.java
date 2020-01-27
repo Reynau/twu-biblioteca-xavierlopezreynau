@@ -3,7 +3,9 @@ package com.twu.biblioteca.options;
 import com.twu.biblioteca.Library;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Printer;
+import com.twu.biblioteca.UserRepository;
 import com.twu.biblioteca.exceptions.InvalidItem;
+import com.twu.biblioteca.exceptions.SessionException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,13 +29,13 @@ public class ReturnMovieOptionTest {
     }
 
     @Test
-    public void shouldCheckoutSelectedBook () throws IOException, InvalidItem {
+    public void shouldCheckoutSelectedItem () throws IOException, InvalidItem, SessionException {
         int movieNumber = 1;
         when(reader.readLine()).thenReturn(Integer.toString(movieNumber));
 
         returnMovieOption.execute();
 
-        verify(movieLibrary).returnItem(movieNumber);
+        verify(movieLibrary).returnItem(movieNumber, UserRepository.userRepository.getLoggedUser());
         verifyNoMoreInteractions(movieLibrary);
     }
 }
