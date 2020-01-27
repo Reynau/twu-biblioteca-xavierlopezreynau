@@ -59,6 +59,8 @@ public class App {
         Option checkoutMovieOption = new CheckoutMovieOption(printer, reader, movieLibrary);
         Option returnMovieOption = new ReturnMovieOption(printer, reader, movieLibrary);
 
+        Option logInOption = new LogInOption(printer, reader);
+
         menu.add(exitOption);
 
         menu.add(listOfBooks);
@@ -68,6 +70,8 @@ public class App {
         menu.add(listOfMovies);
         menu.add(checkoutMovieOption);
         menu.add(returnMovieOption);
+
+        menu.add(logInOption);
 
         return menu;
     }
