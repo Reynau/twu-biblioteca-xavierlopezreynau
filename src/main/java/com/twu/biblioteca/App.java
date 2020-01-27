@@ -60,6 +60,7 @@ public class App {
         Option returnMovieOption = new ReturnMovieOption(printer, reader, movieLibrary);
 
         Option logInOption = new LogInOption(printer, reader);
+        Option logOutOption = new LogOutOption(printer);
 
         menu.add(exitOption);
 
@@ -72,6 +73,7 @@ public class App {
         menu.add(returnMovieOption);
 
         menu.add(logInOption);
+        menu.add(logOutOption);
 
         return menu;
     }
