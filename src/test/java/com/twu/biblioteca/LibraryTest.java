@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.InvalidBook;
+import com.twu.biblioteca.exceptions.InvalidItem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldStoreCheckedOutStateOfBooks () throws InvalidBook {
+    public void shouldStoreCheckedOutStateOfBooks () throws InvalidItem {
         bookLibrary.checkoutItem(1);
 
         String actual = bookLibrary.serialize();
@@ -58,7 +58,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidBook {
+    public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidItem {
         bookLibrary.checkoutItem(3);
 
         verify(printer).print("Thank you! Enjoy the item");
@@ -66,7 +66,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintUnSuccessfulMessageWhenBookIsCheckedOut () throws InvalidBook {
+    public void shouldPrintUnSuccessfulMessageWhenBookIsCheckedOut () throws InvalidItem {
         bookLibrary.checkoutItem(3);
         bookLibrary.checkoutItem(3);
 
@@ -74,7 +74,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldStoreReturnedBookState () throws InvalidBook {
+    public void shouldStoreReturnedBookState () throws InvalidItem {
         bookLibrary.checkoutItem(1);
         bookLibrary.returnItem(1);
 
@@ -85,7 +85,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintSuccessfulMessageWhenBookIsReturned () throws InvalidBook {
+    public void shouldPrintSuccessfulMessageWhenBookIsReturned () throws InvalidItem {
         bookLibrary.checkoutItem(3);
         bookLibrary.returnItem(3);
 
@@ -93,7 +93,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidBook {
+    public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidItem {
         bookLibrary.returnItem(3);
 
         verify(printer).print("That is not a valid item to return");

@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.InvalidBook;
+import com.twu.biblioteca.exceptions.InvalidItem;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class Library<T extends Printable> implements Printable {
         Collections.fill(checkedOut, Boolean.FALSE);
     }
 
-     public void checkoutItem (int itemNumber) throws InvalidBook {
+     public void checkoutItem (int itemNumber) throws InvalidItem {
          checkIfIsOutOfBounds(itemNumber);
 
          int itemIndex = itemNumber-1;
@@ -34,7 +34,7 @@ public class Library<T extends Printable> implements Printable {
          printer.print("Thank you! Enjoy the item");
      }
 
-     public void returnItem (int itemNumber) throws InvalidBook {
+     public void returnItem (int itemNumber) throws InvalidItem {
          checkIfIsOutOfBounds(itemNumber);
 
          int itemIndex = itemNumber-1;
@@ -61,9 +61,9 @@ public class Library<T extends Printable> implements Printable {
         return result.toString();
     }
 
-    private void checkIfIsOutOfBounds(int itemNumber) throws InvalidBook {
+    private void checkIfIsOutOfBounds(int itemNumber) throws InvalidItem {
         if (itemNumber < 1 || itemNumber > this.checkedOut.size()) {
-            throw new InvalidBook("Invalid item number");
+            throw new InvalidItem("Invalid item number");
         }
     }
 }

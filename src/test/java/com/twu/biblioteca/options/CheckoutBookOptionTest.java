@@ -3,7 +3,7 @@ package com.twu.biblioteca.options;
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Library;
 import com.twu.biblioteca.Printer;
-import com.twu.biblioteca.exceptions.InvalidBook;
+import com.twu.biblioteca.exceptions.InvalidItem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class CheckoutBookOptionTest {
     }
 
     @Test
-    public void shouldCheckoutSelectedBook () throws IOException, InvalidBook {
+    public void shouldCheckoutSelectedBook () throws IOException, InvalidItem {
         int bookNumber = 1;
         when(reader.readLine()).thenReturn(Integer.toString(bookNumber));
 

@@ -1,7 +1,7 @@
 package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.*;
-import com.twu.biblioteca.exceptions.InvalidBook;
+import com.twu.biblioteca.exceptions.InvalidItem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class CheckoutBookOption extends Option {
         try {
             bookLibrary.checkoutItem(optionNumber);
         }
-        catch (InvalidBook e) {
+        catch (InvalidItem e) {
             printer.print(e.getMessage());
         }
     }
