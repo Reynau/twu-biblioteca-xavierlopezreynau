@@ -9,7 +9,7 @@ public class UserTest {
 
     @Test
     public void shouldReturnSerializedBook () {
-        User user = new User("u1");
+        User user = new User("u1", "p1");
 
         String serializedUser = user.serialize();
 
