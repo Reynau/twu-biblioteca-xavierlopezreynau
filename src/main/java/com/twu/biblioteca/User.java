@@ -2,20 +2,24 @@ package com.twu.biblioteca;
 
 public class User implements Printable {
 
-    private String name;
+    private String libraryNumber;
     private String password;
+
+    private String name;
     private String email;
     private int phone;
 
-    public User(String name, String password, String email, int phone) {
-        this.name = name;
+    public User(String libraryNumber, String password, String name, String email, int phone) {
+        this.libraryNumber = libraryNumber;
         this.password = password;
+
+        this.name = name;
         this.email = email;
         this.phone = phone;
     }
 
     public String getHash () {
-        return name + ":" + password;
+        return libraryNumber + ":" + password;
     }
 
     @Override

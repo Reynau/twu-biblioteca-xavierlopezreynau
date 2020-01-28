@@ -1,9 +1,6 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.Constants;
-import com.twu.biblioteca.Printer;
-import com.twu.biblioteca.User;
-import com.twu.biblioteca.UserRepository;
+import com.twu.biblioteca.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,12 +18,13 @@ public class ViewUserInformationOptionTest {
 
     @Test
     public void shouldPrintUserInformationWhenUserIsLoggedIn () {
-        UserRepository.userRepository.logIn("u1:p1");
+        UserRepository.userRepository.logIn(Data.users.get(0).getHash());
         User user = UserRepository.userRepository.getLoggedUser();
 
         viewUserInformationOption.execute();
 
-        verify(printer).print(user.getData());
+        String userData = user.getData();
+        verify(printer).print(userData);
         verifyNoMoreInteractions(printer);
     }
 

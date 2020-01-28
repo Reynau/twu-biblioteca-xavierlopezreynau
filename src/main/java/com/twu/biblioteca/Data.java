@@ -19,4 +19,12 @@ public class Data {
             new Movie("Pan's Labyrinth", 2006, "Guillermo del Toro", 10),
             new Movie("Doctor Zhivago", 1965, "David Lean", 10)
     );
+
+    public static final List<User> users = Arrays.asList(
+            new User("111-1111", "111", "Fahad Shepard", "fahad@email.com", 12345678),
+            new User("222-2222", "222", "Nuala Mahoney", "nuala@email.com", 12345678),
+            new User("333-3333", "333", "Patrick Atikson", "patrick@email.com", 12345678),
+            new User("444-4444", "444", "Franklin Driscoll", "franklin@email.com", 12345678),
+            new User("555-5555", "555", "Penny Berger", "penny@email.com", 12345678)
+    );
 }

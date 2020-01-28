@@ -9,7 +9,7 @@ public class UserTest {
 
     @Test
     public void shouldReturnSerializedBook () {
-        User user = new User("u1", "p1", "e1", 1);
+        User user = new User("111-1111", "p1", "u1", "e1", 1);
 
         String serializedUser = user.serialize();
 
@@ -26,7 +26,7 @@ public class UserTest {
 
     @Test
     public void shouldReturnUserData () {
-        User user = new User("u1", "p1", "e1", 1);
+        User user = new User("111-1111", "p1", "u1", "e1", 1);
 
         String userData = user.getData();
 

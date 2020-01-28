@@ -2,7 +2,6 @@ package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.Constants;
 import com.twu.biblioteca.Printer;
-import com.twu.biblioteca.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +24,8 @@ public class LogInOptionTest {
 
     @Test
     public void shouldLogInWithValidCredentials () throws IOException {
-        when(reader.readLine()).thenReturn("u1", "p1");
+        when(reader.readLine()).thenReturn("111-1111", "111");
+
         logInOption.execute();
 
         verify(printer).print(Constants.SUCCESS_LOGIN);

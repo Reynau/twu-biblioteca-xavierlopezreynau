@@ -3,8 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class UserRepositoryTest {
@@ -18,7 +17,7 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldLogInWhenUserCredentialsExist () {
-        boolean userLogged = userRepository.logIn("u1:p1");
+        boolean userLogged = userRepository.logIn(Data.users.get(0).getHash());
         assertThat(userLogged, is(true));
     }
 
@@ -37,15 +36,16 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldReturnUserWhenUserIsLoggedIn() {
-        userRepository.logIn("u1:p1");
+        userRepository.logIn(Data.users.get(0).getHash());
         User user = userRepository.getLoggedUser();
 
-        assertThat(user.serialize(), is("u1"));
+        assertThat(user, is(not(nullValue())));
+        assertThat(user.serialize(), is("Fahad Shepard"));
     }
 
     @Test
     public void shouldReturnNullWhenUserLogOut() {
-        userRepository.logIn("u1:p1");
+        userRepository.logIn(Data.users.get(0).getHash());
         userRepository.logOut();
         User user = userRepository.getLoggedUser();
 
