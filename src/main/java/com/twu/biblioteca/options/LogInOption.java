@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.Constants;
 import com.twu.biblioteca.Option;
 import com.twu.biblioteca.Printer;
 import com.twu.biblioteca.UserRepository;
@@ -24,30 +25,30 @@ public class LogInOption extends Option {
     public void execute() {
         String credentials = requestLogIn();
         if (UserRepository.userRepository.logIn(credentials)) {
-            printer.print("Logged in successfully!");
+            printer.print(Constants.SUCCESS_LOGIN);
             return;
         }
-        printer.print("Incorrect username or password");
+        printer.print(Constants.ERROR_INVALID_CREDENTIALS);
     }
 
     private String requestLogIn() {
         String username = null;
         String password = null;
 
-        printer.print("Insert username:");
+        printer.print(Constants.INSERT_USERNAME);
         try {
             username = reader.readLine();
         }
         catch (IOException e) {
-            printer.print("Error reading input. Please try again.");
+            printer.print(Constants.ERROR_READING_INPUT);
         }
 
-        printer.print("Insert password:");
+        printer.print(Constants.INSERT_PASSWORD);
         try {
             password = reader.readLine();
         }
         catch (IOException e) {
-            printer.print("Error reading input. Please try again.");
+            printer.print(Constants.ERROR_READING_INPUT);
         }
 
         return username + ":" + password;

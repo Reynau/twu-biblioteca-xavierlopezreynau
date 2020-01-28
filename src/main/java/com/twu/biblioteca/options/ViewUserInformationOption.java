@@ -1,9 +1,6 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.Option;
-import com.twu.biblioteca.Printer;
-import com.twu.biblioteca.User;
-import com.twu.biblioteca.UserRepository;
+import com.twu.biblioteca.*;
 
 public class ViewUserInformationOption extends Option {
     private static final String TITLE = "View user information";
@@ -20,7 +17,7 @@ public class ViewUserInformationOption extends Option {
     public void execute() {
         User user = UserRepository.userRepository.getLoggedUser();
         if (user == null) {
-            printer.print("You need to be logged in!");
+            printer.print(Constants.ERROR_NOT_LOGGED_IN);
             return;
         }
 

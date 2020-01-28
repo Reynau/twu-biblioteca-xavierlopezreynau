@@ -54,7 +54,7 @@ public class Library<T extends Printable> implements Printable {
     }
 
      public void checkoutItem (int itemNumber, User user) throws InvalidItem, SessionException {
-         if(user == null) throw new SessionException("You need to be logged in!");
+         if(user == null) throw new SessionException(Constants.ERROR_NOT_LOGGED_IN);
 
          checkIfIsOutOfBounds(itemNumber);
 
@@ -63,27 +63,27 @@ public class Library<T extends Printable> implements Printable {
          Node node = nodes.get(itemIndex);
 
          if (node.isCheckedOut()) {
-             printer.print("Sorry, that item is not available");
+             printer.print(Constants.ERROR_ITEM_NOT_AVAILABLE);
              return;
          }
 
          node.checkoutNode(user);
-         printer.print("Thank you! Enjoy the item");
+         printer.print(Constants.SUCCESS_CHECKOUT_MESSAGE);
      }
 
      public void returnItem (int itemNumber, User user) throws InvalidItem, SessionException {
-         if(user == null) throw new SessionException("You need to be logged in!");
+         if(user == null) throw new SessionException(Constants.ERROR_NOT_LOGGED_IN);
 
          checkIfIsOutOfBounds(itemNumber);
 
          int itemIndex = itemNumber-1;
 
          Node node = nodes.get(itemIndex);
-         if (!node.isCheckedOut()) throw new InvalidItem("That is not a valid item to return");
-         if (!node.getUserHash().equals(user.getHash())) throw new SessionException("Invalid user!");
+         if (!node.isCheckedOut()) throw new InvalidItem(Constants.ERROR_RETURN_MESSAGE);
+         if (!node.getUserHash().equals(user.getHash())) throw new SessionException(Constants.ERROR_INVALID_USER);
 
          node.returnNode();
-         printer.print("Thank you for returning the item");
+         printer.print(Constants.SUCCESS_RETURN_MESSAGE);
      }
 
     @Override
@@ -117,7 +117,7 @@ public class Library<T extends Printable> implements Printable {
 
     private void checkIfIsOutOfBounds(int itemNumber) throws InvalidItem {
         if (itemNumber < 1 || itemNumber > this.nodes.size()) {
-            throw new InvalidItem("Invalid item number");
+            throw new InvalidItem(Constants.ERROR_INVALID_OPTION);
         }
     }
 }

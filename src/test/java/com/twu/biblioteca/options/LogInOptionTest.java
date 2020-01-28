@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.Constants;
 import com.twu.biblioteca.Printer;
 import com.twu.biblioteca.UserRepository;
 import org.junit.Before;
@@ -27,13 +28,13 @@ public class LogInOptionTest {
         when(reader.readLine()).thenReturn("u1", "p1");
         logInOption.execute();
 
-        verify(printer).print("Logged in successfully!");
+        verify(printer).print(Constants.SUCCESS_LOGIN);
     }
 
     @Test
     public void shouldNotLogInWithInvalidCredentials () {
         logInOption.execute();
 
-        verify(printer).print("Incorrect username or password");
+        verify(printer).print(Constants.ERROR_INVALID_CREDENTIALS);
     }
 }

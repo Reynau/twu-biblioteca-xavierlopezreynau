@@ -66,7 +66,7 @@ public class LibraryTest {
     public void shouldPrintSuccessMessageWhenBookIsCheckedOut () throws InvalidItem, SessionException {
         bookLibrary.checkoutItem(3, user);
 
-        verify(printer).print("Thank you! Enjoy the item");
+        verify(printer).print(Constants.SUCCESS_CHECKOUT_MESSAGE);
         verifyNoMoreInteractions(printer);
     }
 
@@ -75,7 +75,7 @@ public class LibraryTest {
         bookLibrary.checkoutItem(3, user);
         bookLibrary.checkoutItem(3, user);
 
-        verify(printer).print("Sorry, that item is not available");
+        verify(printer).print(Constants.ERROR_CHECKOUT_MESSAGE);
     }
 
     @Test
@@ -94,11 +94,13 @@ public class LibraryTest {
         bookLibrary.checkoutItem(3, user);
         bookLibrary.returnItem(3, user);
 
-        verify(printer).print("Thank you for returning the item");
+        verify(printer).print(Constants.SUCCESS_RETURN_MESSAGE);
     }
 
     @Test(expected=InvalidItem.class)
     public void shouldPrintUnSuccessfulMessageWhenBookIsReturned () throws InvalidItem, SessionException {
         bookLibrary.returnItem(3, user);
+
+        verify(printer).print(Constants.ERROR_RETURN_MESSAGE);
     }
 }

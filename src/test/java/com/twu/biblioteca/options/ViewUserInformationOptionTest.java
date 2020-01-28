@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.Constants;
 import com.twu.biblioteca.Printer;
 import com.twu.biblioteca.User;
 import com.twu.biblioteca.UserRepository;
@@ -33,7 +34,7 @@ public class ViewUserInformationOptionTest {
     public void shouldNotPrintUserInformationWhenUserIsLoggedOut () {
         viewUserInformationOption.execute();
 
-        verify(printer).print("You need to be logged in!");
+        verify(printer).print(Constants.ERROR_NOT_LOGGED_IN);
         verifyNoMoreInteractions(printer);
     }
 }

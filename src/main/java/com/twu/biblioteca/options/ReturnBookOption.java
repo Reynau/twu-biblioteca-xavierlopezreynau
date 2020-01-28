@@ -45,14 +45,14 @@ public class ReturnBookOption extends Option {
             input = reader.readLine();
         }
         catch (IOException e) {
-            printer.print("Error reading input. Please try again.");
+            printer.print(Constants.ERROR_READING_INPUT);
         }
 
         try {
             optionNumber = Integer.parseInt(input);
         }
         catch (NumberFormatException e) {
-            printer.print("Invalid option. Please try again.");
+            printer.print(Constants.ERROR_INVALID_OPTION);
             return -1;
         }
         return optionNumber;

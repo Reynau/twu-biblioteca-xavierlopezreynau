@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.Constants;
 import com.twu.biblioteca.Printer;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +30,6 @@ public class LogOutOptionTest {
         logInOption.execute();
 
         logOutOption.execute();
-        verify(printer).print("Logged out successfully!");
+        verify(printer).print(Constants.SUCCESS_LOGOUT);
     }
 }

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
 
     static private BufferedReader reader;
     static private Printer printer;
@@ -30,7 +29,7 @@ public class App {
 
         Menu menu = createMenu(bookLibrary, movieLibrary);
 
-        printer.print(WELCOME_MESSAGE);
+        printer.print(Constants.WELCOME_MESSAGE);
 
         int optionNumber;
         do {
@@ -99,7 +98,7 @@ public class App {
             optionNumber = Integer.parseInt(input);
         }
         catch (NumberFormatException e) {
-            printer.print("Invalid option. Please try again.");
+            printer.print(Constants.ERROR_INVALID_OPTION);
             return -1;
         }
         return optionNumber;
