@@ -2,8 +2,8 @@ package com.twu.biblioteca;
 
 public class Movie implements Printable {
     private String name;
-    private int yearPublished;
     private String director;
+    private int yearPublished;
     private int rating;
 
     public Movie(String name, int yearPublished, String director, int rating) {
@@ -14,7 +14,7 @@ public class Movie implements Printable {
     }
 
     public String serialize() {
-        String ratingStr = (rating == 0) ? "Unrated" : Integer.toString(rating);
-        return name + ":" + yearPublished + ":" + director + ":" + ratingStr;
+        String ratingStr = (rating == 0) ? "unrated" : rating + "/10";
+        return name + " by " + director + " (" + yearPublished + ") " + ratingStr;
     }
 }

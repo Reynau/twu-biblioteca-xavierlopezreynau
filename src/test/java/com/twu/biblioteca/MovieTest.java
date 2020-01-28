@@ -13,7 +13,7 @@ public class MovieTest {
 
         String serializedMovie = movie.serialize();
 
-        String expected = "Book1:1900:Director1:8";
+        String expected = "Book1 by Director1 (1900) 8/10";
         assertThat(serializedMovie, is(expected));
     }
 
@@ -30,7 +30,7 @@ public class MovieTest {
 
         String serializedMovie = movie.serialize();
 
-        String expected = "Book1:1900:Director1:Unrated";
+        String expected = "Book1 by Director1 (1900) unrated";
         assertThat(serializedMovie, is(expected));
     }
 }
