@@ -29,10 +29,7 @@ public class CheckoutMovieOption extends Option {
         try {
             movieLibrary.checkoutItem(optionNumber, UserRepository.userRepository.getLoggedUser());
         }
-        catch (InvalidItem e) {
-            printer.print(e.getMessage());
-        }
-        catch (SessionException e) {
+        catch (InvalidItem | SessionException e) {
             printer.print(e.getMessage());
         }
     }

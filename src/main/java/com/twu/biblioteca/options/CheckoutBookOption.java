@@ -29,10 +29,7 @@ public class CheckoutBookOption extends Option {
         try {
             bookLibrary.checkoutItem(optionNumber, UserRepository.userRepository.getLoggedUser());
         }
-        catch (InvalidItem e) {
-            printer.print(e.getMessage());
-        }
-        catch (SessionException e) {
+        catch (InvalidItem | SessionException e) {
             printer.print(e.getMessage());
         }
     }

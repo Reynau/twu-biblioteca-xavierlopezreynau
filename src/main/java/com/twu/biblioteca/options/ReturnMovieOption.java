@@ -29,10 +29,7 @@ public class ReturnMovieOption extends Option {
         try {
             movieLibrary.returnItem(optionNumber, UserRepository.userRepository.getLoggedUser());
         }
-        catch (InvalidItem e) {
-            printer.print(e.getMessage());
-        }
-        catch (SessionException e) {
+        catch (InvalidItem | SessionException e) {
             printer.print(e.getMessage());
         }
     }

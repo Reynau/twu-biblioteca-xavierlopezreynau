@@ -29,10 +29,7 @@ public class ReturnBookOption extends Option {
         try {
             bookLibrary.returnItem(optionNumber, UserRepository.userRepository.getLoggedUser());
         }
-        catch (InvalidItem e) {
-            printer.print(e.getMessage());
-        }
-        catch (SessionException e) {
+        catch (InvalidItem | SessionException e) {
             printer.print(e.getMessage());
         }
     }
