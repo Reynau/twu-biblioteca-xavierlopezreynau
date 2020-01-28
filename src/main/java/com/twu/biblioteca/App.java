@@ -9,7 +9,6 @@ import com.twu.biblioteca.options.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class App {
@@ -21,10 +20,10 @@ public class App {
         reader = new BufferedReader(new InputStreamReader(System.in));
         printer = new Printer(System.out);
 
-        List<Book> books = createFakeListOfBooks();
+        List<Book> books = Data.bookList;
         Library<Book> bookLibrary = new Library<>(printer, books);
 
-        List<Movie> movies = createFakeListOfMovies();
+        List<Movie> movies = Data.movieList;
         Library<Movie> movieLibrary = new Library<>(printer, movies);
 
         Menu menu = createMenu(bookLibrary, movieLibrary);
@@ -102,34 +101,5 @@ public class App {
             return -1;
         }
         return optionNumber;
-    }
-
-    private static List<Book> createFakeListOfBooks () {
-        List<Book> books = new ArrayList<>();
-        for (int i=1; i < 4; ++i) {
-            String name = "Book" + i;
-            String author = "Author" + i;
-            String yearPublished = "Year" + i;
-
-            Book book = new Book(name, author, yearPublished);
-
-            books.add(book);
-        }
-        return books;
-    }
-
-    private static List<Movie> createFakeListOfMovies () {
-        List<Movie> movies = new ArrayList<>();
-        for (int i=1; i < 4; ++i) {
-            String name = "Movie" + i;
-            int yearPublished = 1900;
-            String director = "Director" + i;
-            int rating = 8;
-
-            Movie movie = new Movie(name, yearPublished, director, rating);
-
-            movies.add(movie);
-        }
-        return movies;
     }
 }
