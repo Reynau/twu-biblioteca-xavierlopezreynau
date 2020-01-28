@@ -9,7 +9,6 @@ import com.twu.biblioteca.options.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 public class App {
 
@@ -20,11 +19,8 @@ public class App {
         reader = new BufferedReader(new InputStreamReader(System.in));
         printer = new Printer(System.out);
 
-        List<Book> books = Data.bookList;
-        Library<Book> bookLibrary = new Library<>(printer, books);
-
-        List<Movie> movies = Data.movieList;
-        Library<Movie> movieLibrary = new Library<>(printer, movies);
+        Library<Book> bookLibrary = new Library<>(printer, Data.bookList);
+        Library<Movie> movieLibrary = new Library<>(printer, Data.movieList);
 
         Menu menu = createMenu(bookLibrary, movieLibrary);
 
