@@ -56,7 +56,7 @@ public class MenuTest {
 
         menu.add(option);
 
-        String expected = "Menu:\n0. Close the application\n";
+        String expected = "Menu:\n0.\tClose the application\n";
         String actual = menu.serialize();
 
         assertThat(actual, is(expected));

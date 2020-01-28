@@ -31,7 +31,7 @@ public class Menu implements Printable {
         result.append("Menu:\n");
         int optionNum = 0;
         for (Option option : options) {
-            result.append(optionNum).append(". ").append(option.serialize()).append("\n");
+            result.append(optionNum).append(".\t").append(option.serialize()).append("\n");
             ++optionNum;
         }
         return result.toString();
