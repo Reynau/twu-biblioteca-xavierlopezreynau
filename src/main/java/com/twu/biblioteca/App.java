@@ -63,6 +63,7 @@ public class App {
 
         Option logInOption = new LogInOption(printer, reader);
         Option logOutOption = new LogOutOption(printer);
+        Option viewUserInformationOption = new ViewUserInformationOption(printer);
 
         menu.add(exitOption);
 
@@ -78,6 +79,7 @@ public class App {
 
         menu.add(logInOption);
         menu.add(logOutOption);
+        menu.add(viewUserInformationOption);
 
         return menu;
     }
