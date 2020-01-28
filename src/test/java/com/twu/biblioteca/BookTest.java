@@ -9,11 +9,11 @@ public class BookTest {
 
     @Test
     public void shouldReturnSerializedBook () {
-        Book book = new Book("Book1", "Author1", "Year1");
+        Book book = new Book("Book1", "Author1", 1900, 8);
 
         String serializedBook = book.serialize();
 
-        String expected = "Book1:Author1:Year1";
+        String expected = "Book1 by Author1 (1900) 8/10";
         assertThat(serializedBook, is(expected));
     }
 
