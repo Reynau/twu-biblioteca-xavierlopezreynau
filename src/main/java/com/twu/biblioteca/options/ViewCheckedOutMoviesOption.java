@@ -17,6 +17,6 @@ public class ViewCheckedOutMoviesOption extends Option {
 
     @Override
     public void execute() {
-        printer.print(movieLibrary.getCheckedOutBooks());
+        printer.print(movieLibrary.getCheckedOutItems());
     }
 }

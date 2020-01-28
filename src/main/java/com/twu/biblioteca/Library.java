@@ -101,7 +101,7 @@ public class Library<T extends Printable> implements Printable {
         return result.toString();
     }
 
-    public String getCheckedOutBooks () {
+    public String getCheckedOutItems() {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < nodes.size(); ++i) {

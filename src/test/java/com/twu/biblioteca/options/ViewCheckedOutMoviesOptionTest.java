@@ -23,7 +23,7 @@ public class ViewCheckedOutMoviesOptionTest {
     @Test
     public void shouldPrintTheListOfCheckedOutBooks () {
         viewCheckedOutMoviesOption.execute();
-        verify(printer).print(movieLibrary.getCheckedOutBooks());
+        verify(printer).print(movieLibrary.getCheckedOutItems());
         verifyNoMoreInteractions(printer);
     }
 }

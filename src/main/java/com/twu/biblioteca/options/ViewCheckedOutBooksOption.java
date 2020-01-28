@@ -20,6 +20,6 @@ public class ViewCheckedOutBooksOption extends Option {
 
     @Override
     public void execute() {
-        printer.print(bookLibrary.getCheckedOutBooks());
+        printer.print(bookLibrary.getCheckedOutItems());
     }
 }
