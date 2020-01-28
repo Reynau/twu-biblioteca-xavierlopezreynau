@@ -1,20 +1,16 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.Constants;
-import com.twu.biblioteca.Option;
-import com.twu.biblioteca.Printer;
-import com.twu.biblioteca.UserRepository;
+import com.twu.biblioteca.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 public class LogInOption extends Option {
     private static final String TITLE = "Log In";
 
-    private BufferedReader reader;
+    private Reader reader;
     private Printer printer;
 
-    public LogInOption(Printer printer, BufferedReader reader) {
+    public LogInOption(Printer printer, Reader reader) {
         super(TITLE);
 
         this.printer = printer;
@@ -37,7 +33,7 @@ public class LogInOption extends Option {
 
         printer.print(Constants.INSERT_USERNAME);
         try {
-            username = reader.readLine();
+            username = reader.readStr();
         }
         catch (IOException e) {
             printer.print(Constants.ERROR_READING_INPUT);
@@ -45,7 +41,7 @@ public class LogInOption extends Option {
 
         printer.print(Constants.INSERT_PASSWORD);
         try {
-            password = reader.readLine();
+            password = reader.readStr();
         }
         catch (IOException e) {
             printer.print(Constants.ERROR_READING_INPUT);

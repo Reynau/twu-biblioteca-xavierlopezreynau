@@ -6,17 +6,15 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.exceptions.MenuException;
 import com.twu.biblioteca.options.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class App {
 
-    static private BufferedReader reader;
+    static private Reader reader;
     static private Printer printer;
 
-    public static void main(String[] args) {
-        reader = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws IOException {
+        reader = new Reader(System.in);
         printer = new Printer(System.out);
 
         Library<Book> bookLibrary = new Library<>(printer, Data.bookList);
@@ -29,7 +27,7 @@ public class App {
         int optionNumber;
         do {
             printer.print(menu);
-            optionNumber = requestAction();
+            optionNumber = reader.readInt();
             try {
                 menu.select(optionNumber);
             }
@@ -76,26 +74,5 @@ public class App {
         menu.add(viewUserInformationOption);
 
         return menu;
-    }
-
-    private static int requestAction() {
-        String input = null;
-        int optionNumber;
-
-        try {
-            input = reader.readLine();
-        }
-        catch (IOException e) {
-            printer.print("Error reading output:\n".concat(e.getMessage()));
-        }
-
-        try {
-            optionNumber = Integer.parseInt(input);
-        }
-        catch (NumberFormatException e) {
-            printer.print(Constants.ERROR_INVALID_OPTION);
-            return -1;
-        }
-        return optionNumber;
     }
 }
