@@ -9,7 +9,7 @@ public class UserTest {
 
     @Test
     public void shouldReturnSerializedBook () {
-        User user = new User("u1", "p1");
+        User user = new User("u1", "p1", "e1", 1);
 
         String serializedUser = user.serialize();
 
@@ -22,5 +22,14 @@ public class UserTest {
         Class<?> classObj = User.class;
 
         assertThat(Printable.class.isAssignableFrom(classObj), is(true)); // checks if implements printable
+    }
+
+    @Test
+    public void shouldReturnUserData () {
+        User user = new User("u1", "p1", "e1", 1);
+
+        String userData = user.getData();
+
+        assertThat(userData, is("u1 - e1 - 1"));
     }
 }

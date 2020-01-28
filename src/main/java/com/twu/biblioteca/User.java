@@ -4,9 +4,14 @@ public class User implements Printable {
 
     private String name;
     private String password;
+    private String email;
+    private int phone;
 
-    public User(String name, String password) {
+    public User(String name, String password, String email, int phone) {
         this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getHash () {
@@ -16,5 +21,9 @@ public class User implements Printable {
     @Override
     public String serialize() {
         return name;
+    }
+
+    public String getData () {
+        return name + " - " + email + " - " + phone;
     }
 }
