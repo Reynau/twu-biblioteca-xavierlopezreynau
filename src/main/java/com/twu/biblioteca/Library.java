@@ -53,15 +53,13 @@ public class Library<T extends Printable> implements Printable {
         this.nodes = items.stream().map(Node::new).collect(Collectors.toList());
     }
 
-     public void checkoutItem (int itemNumber, User user) throws InvalidItem, SessionException {
+     public void checkoutItem (int printIndex, User user) throws InvalidItem, SessionException {
          if(user == null) throw new SessionException(Constants.ERROR_NOT_LOGGED_IN);
+         if(isOutOfBounds(printIndex)) throw new InvalidItem(Constants.ERROR_INVALID_OPTION);
 
-         checkIfIsOutOfBounds(itemNumber);
-
-         int itemIndex = itemNumber-1;
+         int itemIndex = printIndex-1;
 
          Node node = nodes.get(itemIndex);
-
          if (node.isCheckedOut()) {
              printer.print(Constants.ERROR_ITEM_NOT_AVAILABLE);
              return;
@@ -71,12 +69,11 @@ public class Library<T extends Printable> implements Printable {
          printer.print(Constants.SUCCESS_CHECKOUT_MESSAGE);
      }
 
-     public void returnItem (int itemNumber, User user) throws InvalidItem, SessionException {
+     public void returnItem (int printIndex, User user) throws InvalidItem, SessionException {
          if(user == null) throw new SessionException(Constants.ERROR_NOT_LOGGED_IN);
+         if(isOutOfBounds(printIndex)) throw new InvalidItem(Constants.ERROR_INVALID_OPTION);
 
-         checkIfIsOutOfBounds(itemNumber);
-
-         int itemIndex = itemNumber-1;
+         int itemIndex = printIndex-1;
 
          Node node = nodes.get(itemIndex);
          if (!node.isCheckedOut()) throw new InvalidItem(Constants.ERROR_RETURN_MESSAGE);
@@ -95,7 +92,8 @@ public class Library<T extends Printable> implements Printable {
 
             if (node.isCheckedOut()) continue;
 
-            result.append(i+1).append(". ").append(node.serialize()).append("\n");
+            int printIndex = i+1;
+            result.append(printIndex).append(". ").append(node.serialize()).append("\n");
         }
 
         return result.toString();
@@ -109,15 +107,14 @@ public class Library<T extends Printable> implements Printable {
 
             if (!node.isCheckedOut()) continue;
 
-            result.append(i+1).append(". ").append(node.serialize()).append("\n");
+            int printIndex = i+1;
+            result.append(printIndex).append(". ").append(node.serialize()).append("\n");
         }
 
         return result.toString();
     }
 
-    private void checkIfIsOutOfBounds(int itemNumber) throws InvalidItem {
-        if (itemNumber < 1 || itemNumber > this.nodes.size()) {
-            throw new InvalidItem(Constants.ERROR_INVALID_OPTION);
-        }
+    private boolean isOutOfBounds(int printIndex) {
+        return (printIndex < 1 || printIndex > this.nodes.size());
     }
 }
